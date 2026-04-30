@@ -1,0 +1,51 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String?  @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  vibeProfiles VibeProfile[]
+}
+
+model VibeProfile {
+  id        String   @id @default(cuid())
+  theme     String   // e.g., 'minimal', 'neon', 'ethereal'
+  coreEmotion String // e.g., 'excitement', 'calm'
+  primaryColor String // e.g., '#ff6b6b'
+  
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model YenegeEvent {
+  id              String   @id @default(cuid())
+  title           String
+  description     String
+  date            DateTime
+  venueName       String
+  location        String
+  
+  // Spatial / Knowledge Base parameters
+  toiletLocation  String?
+  vipAccessPoint  String?
+  parkingInfo     String?
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
