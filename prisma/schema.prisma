@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,42 +7,96 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(cuid())
-  email     String?  @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  
-  vibeProfiles VibeProfile[]
+model ai_conversations {
+  chat_id     Int      @id @default(autoincrement())
+  user_id     Int?
+  user_query  String?  
+  ai_response String?  
+  timestamp   DateTime @default(now()) 
+  users       users?   @relation(fields: [user_id], references: [user_id], onDelete: Restrict, onUpdate: Restrict)
 }
 
-model VibeProfile {
-  id        String   @id @default(cuid())
-  theme     String   // e.g., 'minimal', 'neon', 'ethereal'
-  coreEmotion String // e.g., 'excitement', 'calm'
-  primaryColor String // e.g., '#ff6b6b'
-  
-  userId    String?
-  user      User?    @relation(fields: [userId], references: [id])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model event_menu {
+  menu_id     Int                  @id @default(autoincrement())
+  event_id    Int?
+  item_name   String               
+  category    String?
+  ingredients String?              
+  is_vegan    Boolean?             @default(false)
+  events      events?              @relation(fields: [event_id], references: [event_id], onDelete: Cascade, onUpdate: Restrict)
 }
 
-model YenegeEvent {
-  id              String   @id @default(cuid())
-  title           String
-  description     String
-  date            DateTime
-  venueName       String
-  location        String
-  
-  // Spatial / Knowledge Base parameters
-  toiletLocation  String?
-  vipAccessPoint  String?
-  parkingInfo     String?
+model events {
+  event_id        Int               @id @default(autoincrement())
+  title           String            
+  event_type      String
+  status          String?           @default("Upcoming")
+  start_time      DateTime          
+  description     String?           
+  event_menu      event_menu[]
+  venue_locations venue_locations[]
+}
 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+model users {
+  user_id           Int                @id @default(autoincrement())
+  full_name         String             
+  email             String             @unique(map: "email") 
+  vip_status        Boolean?           @default(false)
+  dietary_allergies String?            
+  professional_bio  String?            
+  created_at        DateTime           @default(now()) 
+  ai_conversations  ai_conversations[]
+}
+
+model venue_locations {
+  location_id   Int     @id @default(autoincrement())
+  event_id      Int?
+  area_name     String? 
+  coordinates_x Float?  
+  coordinates_y Float?  
+  floor_level   Int?    @default(1)
+  events        events? @relation(fields: [event_id], references: [event_id], onDelete: Cascade, onUpdate: Restrict)
+}
+
+model EventBlueprint {
+  id           String   @id @default(cuid())
+  userEmail    String?
+  eventType    String
+  guestCount   Int
+  budget       Float
+  venueType    String
+  theme        String
+  colors       String
+  layout       String
+  flowers      String
+  lighting     String
+  decorStyle   String
+  stageStyle   String
+  notes        String
+  conceptImage String?
+  createdAt    DateTime @default(now())
+}
+
+model ProposalRequest {
+  id          String @id @default(cuid())
+  blueprintId String
+  name        String
+  phone       String
+  email       String
+  eventDate   DateTime?
+  city        String?
+  proposalType String?
+  notes       String?
+
+  createdAt DateTime @default(now())
+}
+
+model SavedDesign {
+  id String @id @default(cuid())
+
+  userEmail String
+
+  blueprintId String
+
+  createdAt DateTime @default(now())
 }

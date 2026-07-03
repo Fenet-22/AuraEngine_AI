@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap');
 
 :root {
-  /* Luxury Noir Palette */
-  --bg-primary: #050505;
-  --bg-secondary: #0a0a0a;
-  --bg-tertiary: #121212;
+  /* Pristine Light Palette */
+  --bg-primary: #fdfdfd;
+  --bg-secondary: #f4f4f4;
+  --bg-tertiary: #eaeaec;
   
   /* Text */
-  --text-primary: #f8f8f8;
-  --text-secondary: #a0a0a0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
   
   /* Yenege Accents */
-  --accent-gold: #ffd447;
-  --accent-coral: #ff6b6b;
+  --accent-gold: #d4a000;
+  --accent-coral: #d14141;
   
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.08);
   
   /* Utilities */
   --border-radius: 12px;
@@ -70,8 +70,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-gold), #ffb200);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--accent-gold), #ffa500);
+  color: #ffffff;
   box-shadow: var(--glow-base);
 }
 
@@ -84,7 +84,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-outline {
   background: transparent;
   color: var(--text-primary);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .btn-outline:hover {

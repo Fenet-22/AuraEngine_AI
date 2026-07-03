@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
-import ConciergeWidget from "@/components/ConciergeWidget";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +17,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
+        <div id="google_translate_element" style={{ position: 'absolute', top: '15px', right: '15px', zIndex: 9999 }}></div>
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'am,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+              }, 'google_translate_element');
+            }
+          `}
+        </Script>
+        <Script 
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" 
+          strategy="afterInteractive" 
+        />
         {children}
-        <ConciergeWidget />
       </body>
     </html>
   );

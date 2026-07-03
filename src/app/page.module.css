@@ -47,7 +47,7 @@
   left: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, rgba(255, 212, 71, 0.15) 0%, rgba(5, 5, 5, 0) 70%);
+  background: radial-gradient(circle, rgba(212, 160, 0, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
   border-radius: 50%;
   filter: blur(80px);
   z-index: 1;
@@ -60,7 +60,7 @@
   right: -10%;
   width: 70vw;
   height: 70vw;
-  background: radial-gradient(circle, rgba(255, 107, 107, 0.1) 0%, rgba(5, 5, 5, 0) 70%);
+  background: radial-gradient(circle, rgba(209, 65, 65, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
   border-radius: 50%;
   filter: blur(100px);
   z-index: 1;
