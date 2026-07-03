@@ -42,7 +42,7 @@ export default function AuthPage() {
       if (!response.ok) {
         throw new Error(data.error || 'Authentication failed');
       }
-      
+
       login(data.user);
       router.push('/');
     } catch (err: any) {
@@ -71,8 +71,8 @@ export default function AuthPage() {
             {isLogin ? 'Welcome Back' : 'Create Your Profile'}
           </h1>
           <p style={{ color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '2rem' }}>
-            {isLogin 
-              ? 'Enter your credentials to connect to the venue network.' 
+            {isLogin
+              ? 'Enter your credentials to connect to the venue network.'
               : 'Provide your details to enable hyper-personalization.'}
           </p>
 
@@ -85,12 +85,12 @@ export default function AuthPage() {
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.inputGroup}>
               <label>Email Address</label>
-              <input 
-                type="email" 
-                required 
-                className={styles.input} 
+              <input
+                type="email"
+                required
+                className={styles.input}
                 value={formData.email}
-                onChange={e => setFormData({...formData, email: e.target.value})}
+                onChange={e => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
@@ -98,45 +98,45 @@ export default function AuthPage() {
               <>
                 <div className={styles.inputGroup}>
                   <label>Full Name</label>
-                  <input 
-                    type="text" 
-                    required 
-                    className={styles.input} 
+                  <input
+                    type="text"
+                    required
+                    className={styles.input}
                     value={formData.name}
-                    onChange={e => setFormData({...formData, name: e.target.value})}
+                    onChange={e => setFormData({ ...formData, name: e.target.value })}
                   />
                 </div>
 
                 <div className={styles.inputGroup}>
                   <label>Dietary Restrictions / Allergies</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="e.g. Peanuts, Gluten-free"
-                    className={styles.input} 
+                    className={styles.input}
                     value={formData.dietaryAllergies}
-                    onChange={e => setFormData({...formData, dietaryAllergies: e.target.value})}
+                    onChange={e => setFormData({ ...formData, dietaryAllergies: e.target.value })}
                   />
                 </div>
 
                 <div className={styles.inputGroup}>
                   <label>Professional Interests</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="e.g. AI, Web3, FinTech"
-                    className={styles.input} 
+                    className={styles.input}
                     value={formData.professionalInterests}
-                    onChange={e => setFormData({...formData, professionalInterests: e.target.value})}
+                    onChange={e => setFormData({ ...formData, professionalInterests: e.target.value })}
                   />
                 </div>
 
                 <div className={styles.inputGroup}>
                   <label>Technical Skills</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     placeholder="e.g. React, Python, Three.js"
-                    className={styles.input} 
+                    className={styles.input}
                     value={formData.technicalSkills}
-                    onChange={e => setFormData({...formData, technicalSkills: e.target.value})}
+                    onChange={e => setFormData({ ...formData, technicalSkills: e.target.value })}
                   />
                 </div>
               </>
@@ -149,10 +149,10 @@ export default function AuthPage() {
 
           <div style={{ marginTop: '2rem', textAlign: 'center', fontSize: '0.9rem' }}>
             <span style={{ color: 'var(--text-secondary)' }}>
-              {isLogin ? "Don't have a profile yet? " : "Already initialized? "}
+              {isLogin ? "Don&apos;t have a profile yet? " : "Already initialized? "}
             </span>
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={() => setIsLogin(!isLogin)}
               style={{ background: 'none', border: 'none', color: 'var(--accent-coral)', cursor: 'pointer', textDecoration: 'underline' }}
             >
